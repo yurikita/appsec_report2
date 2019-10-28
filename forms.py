@@ -2,15 +2,15 @@ from flask_wtf import FlaskForm
 from wtforms import PasswordField, validators, IntegerField, StringField, SubmitField, TextAreaField
 
 class RegistrationForm(FlaskForm):
-    username = StringField('Username', [validators.DataRequired()])
-    password = PasswordField('Password', [validators.DataRequired()])
-    two_factor = StringField('Phone Number', [validators.DataRequired()])
+    uname = StringField('Username', [validators.DataRequired()])
+    pword = PasswordField('Password', [validators.DataRequired()])
+    mfa = StringField('Phone Number', [validators.DataRequired()])
     submit = SubmitField('Register')
 
 class LoginForm(FlaskForm):
-    username = StringField('Username', [validators.DataRequired()])
-    password = PasswordField('Password', [validators.DataRequired()])
-    two_factor = StringField('Phone Number', [validators.DataRequired()])
+    uname = StringField('Username', [validators.DataRequired()])
+    pword = PasswordField('Password', [validators.DataRequired()])
+    mfa = StringField('Phone Number', [validators.DataRequired()])
     submit = SubmitField('Sign In')
 
 class SpellCheckForm(FlaskForm):

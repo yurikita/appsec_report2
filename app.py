@@ -54,13 +54,13 @@ def register():
     form = RegistrationForm()
     success = ''
     if form.validate_on_submit():
-        username = form.username.data
-        password = form.password.data
-        two_factor = form.two_factor.data
-        if USERS.check_user(username):
+        uname = form.uname.data
+        pword = form.pword.data
+        mfa = form.two_factor.data
+        if USERS.check_user(uname):
             success = 'failure'
         else:
-            USERS.add_user(username, password, two_factor)
+            USERS.add_user(uname, pword, mfa)
             success = 'success'
     return render_template('register.html', title = 'Register', form = form, success = success)
 
@@ -69,16 +69,16 @@ def login():
     form = LoginForm()
     result = ''
     if form.validate_on_submit():
-        username = form.username.data
-        password = form.password.data
-        two_factor = form.two_factor.data
-        if not USERS.check_user(username):
+        uname = form.uname.data
+        pword = form.pword.data
+        mfa = form.mfa.data
+        if not USERS.check_user(uname):
             result = 'Incorrect'
         else:
-            user = USERS.Users[username]
-            if not user.check_password(password):
+            user = USERS.Users[uname]
+            if not user.check_password(pword):
                 result = 'Incorrect'
-            elif not two_factor == user.two_factor:
+            elif not mfa == user.mfa:
                 result = "Two-factor failure"
             else:
                 result = 'Success'
