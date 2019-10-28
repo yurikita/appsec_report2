@@ -56,7 +56,7 @@ def register():
     if form.validate_on_submit():
         uname = form.uname.data
         pword = form.pword.data
-        mfa = form.two_factor.data
+        mfa = form.mfa.data
         if USERS.check_user(uname):
             success = 'failure'
         else:
