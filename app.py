@@ -22,7 +22,7 @@ def load_user(username):
 @app.route('/')
 @app.route('/index')
 def index():
-    if not session.get('logged in'):
+    if not current_user.is_authorized():
         return redirect('/login')
     else:
         return redirect('/spell_check')
@@ -34,7 +34,14 @@ def spell_check():
     textout = ''
     misspelled = ''
     if form.validate_on_submit():
-       textout = 'Testing' 
+        inputtext = form.inputtext.data
+        with open("inputtext.txt", "w") as f:
+            f.write(inputtext)
+            f.close()
+            temp = subprocess.check_output(["./a.out", "inputtext.txt", "wordlist.txt"])
+            temp = temp.decode()
+            misspelled = temp.replace('\n', ', ')[:-2]
+            textout = inputtext
     return render_template('spell_check.html', title = 'Spell Check', form = form, textout = textout, misspelled = misspelled)
 
 @app.route('/logout', methods = ['POST', 'GET'])
@@ -59,8 +66,6 @@ def register():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    if current_user.is_authenticated:
-        return redirect('/')
     form = LoginForm()
     result = ''
     if form.validate_on_submit():
