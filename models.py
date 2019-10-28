@@ -5,25 +5,21 @@ class Users():
     def __init__(self):
         self.Users = {}
 
-    def check_user(self, username):
+    def check_user(self, uname):
         if username in self.Users:
-            print('%s exists', username)
             return True
         else:
-            print('%s does not exist', username)
             return False
 
-    def add_user(self, username, password, two_factor):
-        if(~self.check_user(username)):
-            self.Users[username] = User(username, password, two_factor)
-            print('Added user %s', username)
-            print('Checking id %s', self.Users[username].id)
+    def add_user(self, uname, pword, mfa):
+        if(~self.check_user(uname)):
+            self.Users[uname] = User(uname, pword, mfa)
 
 class User(UserMixin):
-    def __init__(self, username, password, two_factor):
-        self.id = username
-        self.password = generate_password_hash(password)
-        self.two_factor = two_factor
+    def __init__(self, uname, pword, mfa):
+        self.id = uname
+        self.pword = generate_password_hash(pword)
+        self.mfa = mfa
 
     def is_active(self):
         return True
@@ -37,8 +33,5 @@ class User(UserMixin):
     def get_id(self):
         return str(self.id)
     
-    def set_password(self, password):
-        self.password_hash = generate_password_hash(password)
-
-    def check_password(self, password):
-        return check_password_hash(self.password, password)
+    def check_password(self, pword):
+        return check_password_hash(self.pword, pword)
