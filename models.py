@@ -6,7 +6,7 @@ class Users():
         self.Users = {}
 
     def check_user(self, uname):
-        if username in self.Users:
+        if uname in self.Users:
             return True
         else:
             return False
