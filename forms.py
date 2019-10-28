@@ -4,13 +4,13 @@ from wtforms import PasswordField, validators, IntegerField, StringField, Submit
 class RegistrationForm(FlaskForm):
     uname = StringField('Username', [validators.DataRequired()])
     pword = PasswordField('Password', [validators.DataRequired()])
-    mfa = PasswordField('2ofa', id='2ofa', validators= [validators.DataRequired()])
+    mfa = PasswordField('2ofa', id='2ofa')
     submit = SubmitField('Register')
 
 class LoginForm(FlaskForm):
     uname = StringField('Username', [validators.DataRequired()])
     pword = PasswordField('Password', [validators.DataRequired()])
-    mfa = PasswordField('2ofa', id='2ofa', validators = [validators.DataRequired()])
+    mfa = PasswordField('2ofa', id='2ofa')
     submit = SubmitField('Sign In')
 
 class SpellCheckForm(FlaskForm):
