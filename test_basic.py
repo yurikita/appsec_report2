@@ -82,5 +82,10 @@ class TestCase(unittest.TestCase):
             self.assertIn(b"id=\'textout\'>\n\t\tTake a sad sogn and make it better. Remember to let her under your skyn, then you begin to make it betta.\n", response.data)
             self.assertIn(b"id=\'misspelled\'>\n\t\tsogn, skyn, betta", response.data)
 
+    def test_spell_unauthorized(self):
+        with self.client:
+            response = self.spell_check('tests/test1.txt')
+            self.assertNotEqual(response.status_code, 200)
+
 if __name__ == "__main__":
     unittest.main()
