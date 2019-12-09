@@ -8,5 +8,6 @@ before_install:
 install:
         - pip3 install tox-travis
         - pip3 install -r requirements.txt
-scripts:
+script:
+        - flask run &
         - tox
