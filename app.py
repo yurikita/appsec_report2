@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template, session, redirect
 from config import Config
 from forms import LoginForm, RegistrationForm, SpellCheckForm
-from flask_login import LoginManager, login_required, current_user, login_user
+from flask_login import LoginManager, login_required, current_user, login_user, logout_user
 from models import User, Users
 import subprocess
 
