@@ -1,5 +1,6 @@
 languages: python
 before_install:
+        - sudo pip3 intall tox-travis
         - sudo pip3 install -r requirements.txt
 scripts:
         - tox
