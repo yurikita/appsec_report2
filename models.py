@@ -21,17 +21,8 @@ class User(UserMixin):
         self.pword = generate_password_hash(pword)
         self.mfa = mfa
 
-    def is_active(self):
-        return True
-
     def is_authenticated(self):
         return True
 
-    def is_anonymous(self):
-        return True
-
-    def get_id(self):
-        return str(self.id)
-    
     def check_password(self, pword):
         return check_password_hash(self.pword, pword)
